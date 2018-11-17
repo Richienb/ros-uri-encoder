@@ -5,130 +5,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ROS URI Encoder</title>
-    <meta name="description" content="This is a tool which allows you to convert text into it's URI encoded counterpart and back.">
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-red.min.css'>
+    <title>ROS Encryption</title>
+    <meta name="description" content="This is a Material Design text encryption tool.">
+
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <link rel='stylesheet' href='https://unpkg.com/material-components-web@0.41.0/dist/material-components-web.min.css'>
 
     <style>
-        html > body {
-            background: #5c6bc0;
-            font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+        :root {
+            --mdc-theme-primary: #3f51b5;
+            --mdc-theme-secondary: #f44336;
+            --mdc-theme-on-primary: #ffffff;
+            --mdc-theme-on-secondary: #ffffff;
         }
         
-        body {
-            min-height: 100vh;
-            position: relative;
-            margin: 0;
+        :root body {
+            background-color: #3f51b5;
         }
         
-        main {
-            margin: 13px;
-        }
-        
-        .center {
-            left: 50%;
+        :root body main {
+            background-color: #ffffff;
+            border-radius: 4px;
             position: absolute;
-            top: 50%;
-            -webkit-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
-        }
-        
-        .demo-card-square > .mdl-card__title {
-            background: #3f51b5;
-        }
-        
-        .mdl-card__title-text {
-            color: #ffffff;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            min-width: calc(100vw - 80px);
+            min-height: calc(100vh - 80px);
+            padding: 20px;
         }
     </style>
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500'>
-
-    <script async>
-        document.getElementById("encoded-text").addEventListener("keyup", function() {
-            document.getElementById("original-text").value = decodeURIComponent(
-                document.getElementById("encoded-text").value);
-
-            if (document.getElementById("original-text").value !== "") {
-                if (document.getElementById("original-text-div").classList)
-                    document.getElementById("original-text-div").classList.add("is-dirty");
-                else
-
-                    document.getElementById("original-text-div").className +=
-                    " " + "is-dirty";
-            } else {
-                if (document.getElementById("original-text-div").classList)
-                    document.getElementById("original-text-div").classList.remove("is-dirty");
-                else
-
-                    document.getElementById(
-                    "original-text-div").
-                className = document.
-                getElementById("original-text-div").
-                className.replace(
-                    new RegExp(
-                        "(^|\\b)" + "is-dirty".split(" ").join("|") + "(\\b|$)",
-                        "gi"),
-
-                    " ");
-
-            }
-        });
-
-        document.getElementById("original-text").addEventListener("keyup", function() {
-            document.getElementById("encoded-text").value = encodeURIComponent(
-                document.getElementById("original-text").value);
-
-            if (document.getElementById("encoded-text").value !== "") {
-                if (document.getElementById("encoded-text-div").classList)
-                    document.getElementById("encoded-text-div").classList.add("is-dirty");
-                else
-
-                    document.getElementById("encoded-text-div").className += " " + "is-dirty";
-            } else {
-                if (document.getElementById("encoded-text-div").classList)
-                    document.getElementById("encoded-text-div").classList.remove("is-dirty");
-                else
-
-                    document.getElementById(
-                    "encoded-text-div").
-                className = document.
-                getElementById("encoded-text-div").
-                className.replace(
-                    new RegExp(
-                        "(^|\\b)" + "is-dirty".split(" ").join("|") + "(\\b|$)",
-                        "gi"),
-
-                    " ");
-
-            }
-        });
-    </script>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
-    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css'>
 
 </head>
 
 <body>
 
-    <div class="demo-card-square mdl-card mdl-shadow--2dp center">
-        <header class="mdl-card__title">
-            <h2 class="mdl-card__title-text">ROS URI Encoder</h2>
-        </header>
-        <main>
-            <div id="original-text-div" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="3" id="original-text"></textarea>
-                <label class="mdl-textfield__label" for="original-text">Original Text</label>
-            </div>
-            <div id="encoded-text-div" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="3" id="encoded-text"></textarea>
-                <label class="mdl-textfield__label" for="encoded-text">Encoded Text</label>
-            </div>
-        </main>
+    <main class="mdc-typography">
+        <h1 class="mdc-typography--headline1">ROS URI Encoder</h1>
+        <p class="mdc-typography--body1">This is a tool which allows you to convert text into it's URI encoded counterpart and back.</p>
+        <div id="original-text" class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth" data-mdc-auto-init="MDCTextField">
+            <textarea id="original-text-input" class="mdc-text-field__input" rows="5"></textarea>
+            <label for="original-text-input" class="mdc-floating-label">Original Text</label>
+        </div>
+        <br>
+        <div id="encoded-text" class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth" data-mdc-auto-init="MDCTextField">
+            <textarea id="encoded-text-input" class="mdc-text-field__input" rows="5"></textarea>
+            <label for="encoded-text-input" class="mdc-floating-label">Encoded Text</label>
+        </div>
+    </main>
+    <script async src='https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js'></script>
+    <script src='https://unpkg.com/material-components-web@0.41.0/dist/material-components-web.min.js'></script>
 
-    </div>
+    <script>
+        window.mdc.autoInit();
+
+        document.
+        getElementById("original-text-input").
+        addEventListener("input", function(e) {
+            if (document.getElementById("encoded-text-input").value === "") {
+                document.
+                querySelector("#encoded-text > label").
+                classList.add("mdc-floating-label--float-above");
+            }
+            document.getElementById("encoded-text-input").value = encodeURIComponent(
+                document.getElementById("original-text-input").value);
+
+        });
+
+        document.
+        getElementById("encoded-text-input").
+        addEventListener("input", function(e) {
+            if (document.getElementById("original-text-input").value === "") {
+                document.
+                querySelector("#original-text > label").
+                classList.add("mdc-floating-label--float-above");
+            }
+            document.getElementById("original-text-input").value = decodeURIComponent(
+                document.getElementById("encoded-text-input").value);
+
+        });
+    </script>
 
 </body>
 
